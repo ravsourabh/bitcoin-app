@@ -1,10 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 import ifvisible from 'ifvisible.js';
+import { withStyles } from '@material-ui/core/styles';
+import { Card,Typography,TextField,Button,Snackbar,IconButton } from '@material-ui/core';
+
 
 class OutputScreen extends React.Component {
   state = {
-    value: ''
+    value: '',
+    error: false
+  };
+
+  handleClose = event => {
+    this.setState({
+      error: true
+    });
   };
 
   componentDidMount() {
@@ -26,7 +36,9 @@ class OutputScreen extends React.Component {
       });
     })
     .catch(function (error) {
-      console.log(error);
+      self.setState({
+        error: true
+      });
     });
     this.interval = setInterval(() => this.checkMinimised(), 1000);
   };
@@ -42,13 +54,58 @@ class OutputScreen extends React.Component {
   };
 
   render() {
+    const {classes} = this.props;
+
     return(
-      <h1>
-        {this.state.value}
-      </h1>
+      <React.Fragment>
+              <Typography variant="h6">
+                <i>
+                  Bitcoin conversion rate
+                </i>
+              </Typography>
+              <form className={classes.container} noValidate autoComplete="off">
+                <div className={classes.convertWrap}>
+                  {this.state.value}
+                </div>
+                <div className={classes.actionButton}>
+                  
+                </div>
+              </form>
+              <Snackbar
+                  className={classes.error}
+                  message="Some error occured"
+                  action={[
+                    <IconButton
+                      key="close"
+                      aria-label="Close"
+                      color="inherit"
+                      className={classes.close}
+                      onClick={this.handleClose}
+                    >
+                      x
+                    </IconButton>,
+                  ]}
+                  open={this.state.error}
+                  autoHideDuration={600}
+                  onClose={this.handleClose}
+                />
+          </React.Fragment>
     );
   }
-
 }
 
-export default OutputScreen;
+const styles = theme => ({
+  convertWrap: {
+    marginTop: "3em",
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  actionButton: {
+    marginTop: "1em",
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '35em'
+  }
+});
+
+export default withStyles(styles)(OutputScreen);

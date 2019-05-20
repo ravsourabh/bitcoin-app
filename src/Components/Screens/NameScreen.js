@@ -49,6 +49,11 @@ class NameScreen extends React.Component {
     	const { classes } = this.props;
         return (
         	<React.Fragment>
+              <Typography variant="h6">
+                <i>
+                  Enter your name, only letters and spaces and maximum 50 characters
+                </i>
+              </Typography>
         			<form className={classes.container} noValidate autoComplete="off">
                 <div className={classes.nameFormWrap}>
     			        <TextField
@@ -57,13 +62,12 @@ class NameScreen extends React.Component {
     			          id="full-name"
     			          label="Enter Name"
     			          className={classes.textField}
+                    variant="outlined"
     			          value={this.state.name}
     			          onChange={this.handleChange('name')}
-    			          helperText = "Maximum 50 characters"
     			          margin="normal"
     			        />
                 </div>
-    			        <br/><br/>
                 <div className={classes.actionButton}>
     			        <Button id="reset"
     			        	className={classes.button}
@@ -87,17 +91,15 @@ class NameScreen extends React.Component {
 
 const styles = theme => ({
 	nameFormWrap: {
-		marginTop: "1em",
+		marginTop: "3em",
 		display: 'flex',
 		justifyContent: 'center'
-	},
-	button: {
-		marginLeft: "0.5em"
 	},
   actionButton: {
     marginTop: "1em",
     display: 'flex',
-    justifyContent: 'space-around'
+    justifyContent: 'space-between',
+    width: '35em'
   }
 });
 

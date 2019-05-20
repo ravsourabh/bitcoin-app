@@ -116,14 +116,15 @@ class CurrencyScreen extends React.Component {
 
 const styles = theme => ({
   currencyInput: {
-    marginTop: "1em",
+    marginTop: "3em",
     display: 'flex',
     justifyContent: 'center'
   },
   actionButton: {
     marginTop: "1em",
     display: 'flex',
-    justifyContent: 'space-around'
+    justifyContent: 'space-between',
+    width: '35em'
   }
 });
 
