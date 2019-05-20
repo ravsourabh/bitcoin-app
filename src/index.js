@@ -5,22 +5,17 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
 	typography: {
-	    useNextVariants: true,
-	  },
-  palette: {
-    primary: {
-      light: '#316189',
-      main: '#1C4D76',
-      dark: '#0D3B61',
-      contrastText: '#fff',
-    },
-    error: {
-      light: '#D46843',
-      main: '#B74822',
-      dark: '#6C1C00',
-      contrastText: '#fff',
-    }
-  },
+	    useNextVariants: true, //required to use material-ui typography without warning
+	},
+	palette: {
+		primary: {
+		  main: '#295fa6'
+		},
+		error: {
+		  main: '#CB3642',
+		  contrastText: '#fff',
+		}
+	},
 });
 
 class App extends React.Component {
